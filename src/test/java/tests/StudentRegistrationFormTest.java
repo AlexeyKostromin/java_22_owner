@@ -65,7 +65,9 @@ public class StudentRegistrationFormTest extends TestBase {
                 .checkResult("Mobile", rsd.phone);
     }
 
+
     @Test
+    @Tag("Simple")
     void failSubmitFormWithEmptyValuesTest() {
         practiceFormPage
                 .openPage()
