@@ -1,12 +1,30 @@
 package tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.AttachHelper;
 import helpers.RandomStudentDataGenerator;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
+import io.qameta.allure.selenide.AllureSelenide;
 
 
 public class StudentRegistrationFormTest extends TestBase {
+    @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
+    @AfterEach
+    void addAttachments() {
+        AttachHelper.takeScreenshotAs("Last screenshot");
+        AttachHelper.pageSource();
+        AttachHelper.browserConsoleLogs();
+        AttachHelper.addVideo();
+    }
+
     PracticeFormPage practiceFormPage = new PracticeFormPage();
 
     @Tag("Smoke")
