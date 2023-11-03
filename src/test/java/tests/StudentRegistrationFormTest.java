@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 import io.qameta.allure.selenide.AllureSelenide;
 
+import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
+
 
 public class StudentRegistrationFormTest extends TestBase {
     @BeforeEach

@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.Color;
 import pages.components.CalendarComponent;
 
@@ -29,93 +30,94 @@ public class PracticeFormPage {
             resultTable = $("[class=table-responsive]"),
             submitBtn = $("[id=submit]");
 
+    @Step("Open main page")
     public PracticeFormPage openPage() {
         open("/automation-practice-form");
         removeFooter();
         return this;
     }
-
+    @Step("Remove footer")
     public PracticeFormPage removeFooter() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
-
+    @Step("Fill first name with value: {firstName}")
     public PracticeFormPage fillFirstName(String firstName) {
         firstNameInput.setValue(firstName);
         return this;
     }
-
+    @Step("Fill last name with value: {lastName}")
     public PracticeFormPage fillLastName(String lastName) {
         lastNameInput.setValue(lastName);
         return this;
     }
-
+    @Step("Fill email with value: {userEmail}")
     public PracticeFormPage fillEmail(String userEmail) {
         emailInput.setValue(userEmail);
         return this;
     }
-
+    @Step("Fill fender with value: {gender}")
     public PracticeFormPage fillGender(String gender) {
         genderInput.$(byText(gender)).click();
         return this;
     }
-
+    @Step("Fill phone with value: {phone}")
     public PracticeFormPage fillPhone(String phone) {
         phoneInput.setValue(phone);
         return this;
     }
-
+    @Step("Fill date with value: {date}")
     public PracticeFormPage setDate(String[] date) {
         dateOfBirthInput.click();
         //new CalendarComponent().selectDate(dayOfBirth, monthOfBirth, yearOfBirth);
         new CalendarComponent().selectDate(date[0], date[1], date[2]);
         return this;
     }
-
+    @Step("Fill subject with value: {subjects}")
     public PracticeFormPage setSubject(String subjects) {
         subjectInput.setValue(subjects).pressEnter();
         return this;
     }
-
+    @Step("Fill hobby with value: {hobby}")
     public PracticeFormPage setHobby(String hobby) {
         $(byText(hobby)).click();
         return this;
     }
-
+    @Step("Upload picture with value: {pictureName}")
     public PracticeFormPage uploadPicture(String pictureName) {
         //$("[id=uploadPicture]").uploadFile(new File("src/test/resources/File1.png"));
         uploadPictureBtn.uploadFromClasspath(pictureName);
         return this;
     }
-
+    @Step("Fill address with value: {address}")
     public PracticeFormPage setAddress(String address) {
         addressInput.setValue(address);
         return this;
     }
-
+    @Step("Fill state with value: {state}")
     public PracticeFormPage setState(String state) {
         stateComboBox.click();
         stateInput.setValue(state).pressEnter();
         return this;
     }
-
+    @Step("Fill city with value: {city}")
     public PracticeFormPage setCity(String city) {
         cityComboBox.click();
         cityInput.setValue(city).pressEnter();
         return this;
     }
-
+    @Step("Submit form")
     public PracticeFormPage submitForm() {
         submitBtn.click();
         return this;
     }
-
+    @Step("Check result {key} -> should have {value}")
     public PracticeFormPage checkResult(String key, String value) {
         resultTable.$(byText(key)).parent().shouldHave(text(value));
         return this;
     }
-
+    @Step("Verify result table -> should be {flag}")
     public void resultTableShouldBeDisplayed(boolean flag) {
         if (flag) {
             resultTable.should(appear);
