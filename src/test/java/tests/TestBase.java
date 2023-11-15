@@ -20,7 +20,7 @@ public class TestBase {
         String browserSize = System.getProperty("browserSize");
         String remoteDriverUrl = System.getProperty("remoteDriverUrl");
 
-        Configuration.browser = browser;
+        //Configuration.browser = browser;
         Configuration.browserVersion = browserVersion;
         Configuration.browserSize = browserSize;
         Configuration.baseUrl = "https://demoqa.com";
