@@ -27,14 +27,14 @@ public class TestBase {
 
         //Configuration.browserSize = "1920x1280";
         //Configuration.pageLoadStrategy="eager";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
-//        Configuration.remote = String.format(
-//                "https://" +
-//                "%s:%s" +
-//                "@%s" +
-//                "/wd/hub",
-//                remoteUserName, remoteUserPassword, remoteDriverUrl);
+        Configuration.remote = String.format(
+                "https://" +
+                "%s:%s" +
+                "@%s" +
+                "/wd/hub",
+                remoteUserName, remoteUserPassword, remoteDriverUrl);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 //        capabilities.setCapability("selenoid:options", Map.<String, Object> of(

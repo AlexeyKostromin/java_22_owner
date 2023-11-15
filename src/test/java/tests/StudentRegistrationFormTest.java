@@ -32,6 +32,19 @@ public class StudentRegistrationFormTest extends TestBase {
 
     @Test
     @Tag("Smoke")
+    void failSubmitFormWithEmptyValuesTest1() {
+        practiceFormPage
+                .openPage()
+                .submitForm()
+                .resultTableShouldBeDisplayed(false);
+
+        practiceFormPage
+                .verifyRequiredFieldsColor()
+                .verifyNonRequiredFieldsColor();
+    }
+
+    @Test
+    @Tag("Smoke1")
     void successSubmitAllFormTest() {
 
         RandomStudentDataGenerator rsd = new RandomStudentDataGenerator();
