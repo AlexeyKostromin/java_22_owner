@@ -30,8 +30,8 @@ public class StudentRegistrationFormTest extends TestBase {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
 
-    @Tag("Smoke")
     @Test
+    @Tag("Smoke")
     void successSubmitAllFormTest() {
 
         RandomStudentDataGenerator rsd = new RandomStudentDataGenerator();
@@ -67,6 +67,7 @@ public class StudentRegistrationFormTest extends TestBase {
     }
 
     @Test
+    @Tag("Regression")
     void successSubmitRequiredFormTest() {
 
         RandomStudentDataGenerator rsd = new RandomStudentDataGenerator();
@@ -88,7 +89,7 @@ public class StudentRegistrationFormTest extends TestBase {
 
 
     @Test
-    @Tag("Simple")
+    @Tag("Regression")
     void failSubmitFormWithEmptyValuesTest() {
         practiceFormPage
                 .openPage()
