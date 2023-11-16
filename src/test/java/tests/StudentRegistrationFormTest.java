@@ -3,15 +3,12 @@ package tests;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.AttachHelper;
 import helpers.RandomStudentDataGenerator;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
-import io.qameta.allure.selenide.AllureSelenide;
-
-import static com.codeborne.selenide.Selenide.open;
-import static io.qameta.allure.Allure.step;
 
 
 public class StudentRegistrationFormTest extends TestBase {
@@ -24,7 +21,7 @@ public class StudentRegistrationFormTest extends TestBase {
     void addAttachments() {
         AttachHelper.takeScreenshotAs("Last screenshot");
         AttachHelper.pageSource();
-        AttachHelper.browserConsoleLogs();
+        //AttachHelper.browserConsoleLogs();
         AttachHelper.addVideo();
     }
 
