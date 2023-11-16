@@ -125,7 +125,7 @@ public class PracticeFormPage {
             resultTable.shouldNot(appear);
         }
     }
-
+    @Step("Verify Required Fields Color")
     public PracticeFormPage verifyRequiredFieldsColor() {
         sleep(200);
         var colorHexFirstName = Color.fromString(firstNameInput.getCssValue("border-color")).asHex();
@@ -144,7 +144,7 @@ public class PracticeFormPage {
         return this;
 
     }
-
+    @Step("Verify Non Required Fields Color")
     public PracticeFormPage verifyNonRequiredFieldsColor() {
         sleep(200);
         var colorHexEmail = Color.fromString(emailInput.getCssValue("border-color")).asHex();

@@ -31,7 +31,7 @@ public class StudentRegistrationFormTest extends TestBase {
     PracticeFormPage practiceFormPage = new PracticeFormPage();
 
     @Test
-    @Tag("Smoke")
+    @Tag("Smoke1")
     void failSubmitFormWithEmptyValuesTest1() {
         practiceFormPage
                 .openPage()
@@ -44,7 +44,7 @@ public class StudentRegistrationFormTest extends TestBase {
     }
 
     @Test
-    @Tag("Smoke1")
+    @Tag("Smoke")
     void successSubmitAllFormTest() {
 
         RandomStudentDataGenerator rsd = new RandomStudentDataGenerator();
