@@ -21,7 +21,7 @@ public class StudentRegistrationFormTest extends TestBase {
     void addAttachments() {
         AttachHelper.takeScreenshotAs("Last screenshot");
         AttachHelper.pageSource();
-        //AttachHelper.browserConsoleLogs();
+        AttachHelper.browserConsoleLogs();
         AttachHelper.addVideo();
     }
 
