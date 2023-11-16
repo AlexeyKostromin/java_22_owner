@@ -23,7 +23,6 @@ public class TestBase {
         String browserSize = System.getProperty("browserSize", "1920x1280");
         String remoteDriverUrl = System.getProperty("remoteDriverUrl");
 
-        //browser = "firefox";
         Configuration.browser = browser;
         Configuration.browserVersion = browserVersion;
         Configuration.browserSize = browserSize;
@@ -33,12 +32,14 @@ public class TestBase {
         //Configuration.pageLoadStrategy="eager";
         //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
-        Configuration.remote = String.format(
-                "https://" +
-                "%s:%s" +
-                "@%s" +
-                "/wd/hub",
-                remoteUserName, remoteUserPassword, remoteDriverUrl);
+//        Configuration.remote = String.format(
+//                "https://" +
+//                "%s:%s" +
+//                "@%s" +
+//                "/wd/hub",
+//                remoteUserName, remoteUserPassword, remoteDriverUrl);
+
+        Configuration.remote = "https://" + remoteUserName + ":" + remoteUserPassword + "@" + remoteDriverUrl +  "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 //        capabilities.setCapability("selenoid:options", Map.<String, Object> of(
@@ -50,8 +51,6 @@ public class TestBase {
                 "enableVNC", true,
                 "enableVideo", true
         ));
-
-
 
 //        clearBrowserCookies();
 //        clearBrowserLocalStorage();
