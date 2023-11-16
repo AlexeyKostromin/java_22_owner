@@ -45,8 +45,6 @@ public class AttachHelper {
 
     public static URL getVideoUrl() {
         var remoteDriverUrl = System.getProperty("remoteDriverUrl");
-        //var remoteDriverUrl = "selenoid.autotests.cloud";
-        //String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
         String videoUrl = "https://" + remoteDriverUrl + "/video/" + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);

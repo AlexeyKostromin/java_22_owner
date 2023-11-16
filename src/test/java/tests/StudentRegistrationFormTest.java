@@ -28,19 +28,6 @@ public class StudentRegistrationFormTest extends TestBase {
     PracticeFormPage practiceFormPage = new PracticeFormPage();
 
     @Test
-    @Tag("Smoke1")
-    void failSubmitFormWithEmptyValuesTest1() {
-        practiceFormPage
-                .openPage()
-                .submitForm()
-                .resultTableShouldBeDisplayed(false);
-
-        practiceFormPage
-                .verifyRequiredFieldsColor()
-                .verifyNonRequiredFieldsColor();
-    }
-
-    @Test
     @Tag("Smoke")
     void successSubmitAllFormTest() {
 
