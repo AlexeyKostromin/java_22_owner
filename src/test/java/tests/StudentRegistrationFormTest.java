@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.AttachHelper;
 import helpers.RandomStudentDataGenerator;
@@ -23,6 +24,7 @@ public class StudentRegistrationFormTest extends TestBase {
         AttachHelper.pageSource();
         AttachHelper.browserConsoleLogs();
         AttachHelper.addVideo();
+        Selenide.closeWebDriver();
     }
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
