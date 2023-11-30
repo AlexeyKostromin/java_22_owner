@@ -38,7 +38,7 @@ public class TestBase {
         ));
 
         Configuration.browserCapabilities = capabilities;
-//test1
+
     }
 }
 
