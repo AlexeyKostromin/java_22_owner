@@ -1,2 +1,2 @@
-rootProject.name = "java_22_jenkins"
+rootProject.name = "java_22_owner"
 
