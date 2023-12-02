@@ -58,7 +58,7 @@ public class StudentRegistrationFormTest extends TestBase {
     }
 
     @Test
-    @Tag("Regression")
+    @Tag("Smoke")
     void successSubmitRequiredFormTest() {
 
         RandomStudentDataGenerator rsd = new RandomStudentDataGenerator();

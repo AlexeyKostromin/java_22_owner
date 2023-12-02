@@ -2,7 +2,8 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import config.WebConfig;
+import config.WebConfigLocal;
+import config.WebConfigRemote;
 import helpers.AttachHelper;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -12,21 +13,28 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class TestBase {
-    private static String remoteUserName = "user1";
-    private static String remoteUserPassword = "1234";
 
     @BeforeAll
     static void beforeAll() {
-        WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
+        var configLocal = ConfigFactory.create(WebConfigLocal.class, System.getProperties());
 
         Configuration.holdBrowserOpen = false;
-        Configuration.browser = config.browser();
-        Configuration.browserSize = config.browserSize();
-        Configuration.baseUrl = config.baseUrl();
+        Configuration.browser = configLocal.browser();
+        Configuration.browserSize = configLocal.browserSize();
+        Configuration.baseUrl = configLocal.baseUrl();
 
-        if (config.isRemote()) {
-            Configuration.browserVersion = config.browserVersion();
-            String remoteDriverUrl = config.remoteUrl();
+        var isRemote = Boolean.parseBoolean(System.getProperty("isRemote", "false"));
+        if (isRemote) {
+            var configRemote = ConfigFactory.create(WebConfigRemote.class, System.getProperties());
+
+            Configuration.browser = configRemote.browser();
+            Configuration.browserSize = configRemote.browserSize();
+            Configuration.baseUrl = configRemote.baseUrl();
+
+            Configuration.browserVersion = configRemote.browserVersion();
+            String remoteDriverUrl = configRemote.remoteUrl();
+            String remoteUserName = configRemote.remoteUserName();
+            String remoteUserPassword = configRemote.remoteUserPassword();
 
             Configuration.remote = "https://" + remoteUserName + ":" + remoteUserPassword + "@" + remoteDriverUrl + "/wd/hub";
 
