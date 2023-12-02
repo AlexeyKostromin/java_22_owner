@@ -8,22 +8,25 @@ import org.aeonbits.owner.Config;
 
 public interface WebConfig extends Config {
     @Key("browser")
-    @DefaultValue("CHROME")
-    String getBrowser();
+    @DefaultValue("chrome")
+    String browser();
 
     @Key("browserVersion")
-    @DefaultValue("100.0")
-    String getBrowserVersion();
-
-    @Key("baseUrl")
-    @DefaultValue("https://demoqa.com")
-    String getBaseUrl();
+    String browserVersion();
 
     @Key("browserSize")
     @DefaultValue("1920x1280")
-    String getBrowserSize();
+    String browserSize();
+
+    @Key("baseUrl")
+    @DefaultValue("https://demoqa.com")
+    String baseUrl();
+
+    @Key("isRemote")
+    @DefaultValue("false")
+    Boolean isRemote();
 
     @Key("remoteUrl")
-    @DefaultValue("https://selenoid.autotests.cloud")
-    String getRemoteUrl();
+    String remoteUrl();
 }
+

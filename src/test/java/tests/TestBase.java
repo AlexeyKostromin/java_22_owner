@@ -1,13 +1,13 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.Selenide;
 import config.WebConfig;
+import helpers.AttachHelper;
 import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.Map;
 
@@ -17,41 +17,37 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-
         WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
 
         Configuration.holdBrowserOpen = false;
+        Configuration.browser = config.browser();
+        Configuration.browserSize = config.browserSize();
+        Configuration.baseUrl = config.baseUrl();
 
-        String browser = config.getBrowser();
-        //String browserVersion = config.getBrowserVersion();;
-        //String browserSize = System.getProperty("browserSize", "1920x1280");
-        String browserSize = config.getBrowserSize();
-        String baseUrl = config.getBaseUrl();
-        String remoteDriverUrl = config.getRemoteUrl();
+        if (config.isRemote()) {
+            Configuration.browserVersion = config.browserVersion();
+            String remoteDriverUrl = config.remoteUrl();
 
+            Configuration.remote = "https://" + remoteUserName + ":" + remoteUserPassword + "@" + remoteDriverUrl + "/wd/hub";
 
-//        String browser = System.getProperty("browser", "chrome");
-//        String browserVersion = System.getProperty("browserVersion", "100.0");
-//        String browserSize = System.getProperty("browserSize", "1920x1280");
-//        String remoteDriverUrl = System.getProperty("remoteDriverUrl");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("selenoid:options", Map.of(
+                    "enableVNC", true,
+                    "enableVideo", true
+            ));
+            Configuration.browserCapabilities = capabilities;
+        }
+    }
 
-        Configuration.browser = browser;
-        //Configuration.browserVersion = browserVersion;
-        Configuration.browserSize = browserSize;
-//        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.baseUrl = baseUrl;;
-
-        //Configuration.remote = "https://" + remoteUserName + ":" + remoteUserPassword + "@" + remoteDriverUrl + "/wd/hub";
-
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//
-//        capabilities.setCapability("selenoid:options", Map.of(
-//                "enableVNC", true,
-//                "enableVideo", true
-//        ));
-//
-//        Configuration.browserCapabilities = capabilities;
-
+    @AfterEach
+    void addAttachments() {
+        AttachHelper.takeScreenshotAs("Last screenshot");
+        AttachHelper.pageSource();
+        if (!Configuration.browser.equalsIgnoreCase("firefox")) {
+            AttachHelper.browserConsoleLogs();
+        }
+        AttachHelper.addVideo();
+        Selenide.closeWebDriver();
     }
 }
 

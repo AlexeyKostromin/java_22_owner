@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.AttachHelper;
@@ -16,15 +17,6 @@ public class StudentRegistrationFormTest extends TestBase {
     @BeforeEach
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
-    @AfterEach
-    void addAttachments() {
-        AttachHelper.takeScreenshotAs("Last screenshot");
-        AttachHelper.pageSource();
-        AttachHelper.browserConsoleLogs();
-        AttachHelper.addVideo();
-        Selenide.closeWebDriver();
     }
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
