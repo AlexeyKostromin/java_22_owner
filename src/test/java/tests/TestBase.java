@@ -24,9 +24,11 @@ public class TestBase {
 
         String browser = config.getBrowser();
         //String browserVersion = config.getBrowserVersion();;
-        String browserSize = System.getProperty("browserSize", "1920x1280");
-        String remoteDriverUrl = config.getRemoteUrl();
+        //String browserSize = System.getProperty("browserSize", "1920x1280");
+        String browserSize = config.getBrowserSize();
         String baseUrl = config.getBaseUrl();
+        String remoteDriverUrl = config.getRemoteUrl();
+
 
 //        String browser = System.getProperty("browser", "chrome");
 //        String browserVersion = System.getProperty("browserVersion", "100.0");
